@@ -1,0 +1,9 @@
+* html #wrapper,
+* html #footer {
+	width: expression(
+	(document.compatMode && document.compatMode == 'CSS1Compat') ?
+	(document.documentElement.clientWidth < 960 ? "960px" :
+	(document.documentElement.clientWidth > 1100 ? "1100px" : "auto")) :
+	(document.body.clientWidth > 960 ? "960px" :
+	(document.body.clientWidth < 1100 ? "1100px" : "auto")));
+}
