@@ -8,6 +8,7 @@ class LawsController extends Controller {
      */
     public $layout = '//layouts/column2';
     public $defaultAction = 'main';
+
     /**
      * @return array action filters
      */
@@ -17,11 +18,11 @@ class LawsController extends Controller {
             'ajaxOnly + setStatus,plusOne',
             array(
                 'ext.filters.YXssFilter',
-                'clean'   => '*',
-                'tags'    => 'none',
+                'clean' => '*',
+                'tags' => 'none',
                 'actions' => 'all'
             ),
-		);
+        );
     }
 
     /**
@@ -32,7 +33,7 @@ class LawsController extends Controller {
     public function accessRules() {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'view', 'main', 'plusone'),
+                'actions' => array('index', 'view', 'main', 'vote'),
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -49,13 +50,11 @@ class LawsController extends Controller {
         );
     }
 
-
-	public function beforeAction () {
-		//parent::beforeAction();
-		Yii::app()->breadCrumbs->setCrumb('Законопроекты', array('/laws/index', 'rating' => 0));
-		return true;
-	}
-	
+    public function beforeAction() {
+        //parent::beforeAction();
+        Yii::app()->breadCrumbs->setCrumb('Законопроекты', array('/laws/index', 'rating' => 0));
+        return true;
+    }
 
     /**
      * Displays a particular model.
@@ -85,9 +84,9 @@ class LawsController extends Controller {
             $model->createtime = time();
             $model->approve = 0;
             if ($model->save()) {
-				EUserFlash::setSuccessMessage('Закон успешно добавлен и отправлен на проверку модератору.');
+                EUserFlash::setSuccessMessage('Закон успешно добавлен и отправлен на проверку модератору.');
                 $this->redirect(array('view', 'id' => $model->id));
-			}
+            }
         }
 
         $this->render('form', array(
@@ -102,18 +101,19 @@ class LawsController extends Controller {
      */
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
-		
-        if (!$model->isEdited()) throw new CHttpException (500);
-        
+
+        if (!$model->isEdited())
+            throw new CHttpException(500);
+
         $this->performAjaxValidation($model);
 
         if (isset($_POST['Laws'])) {
             $model->attributes = $_POST['Laws'];
-			$model->approve = (int) Yii::app()->user->checkAccess('moderator');
+            $model->approve = (int) Yii::app()->user->checkAccess('moderator');
             if ($model->save()) {
-				EUserFlash::setSuccessMessage('Закон успешно отредактирован');
+                EUserFlash::setSuccessMessage('Закон успешно отредактирован');
                 $this->redirect(array('view', 'id' => $model->id));
-			}
+            }
         }
 
         $this->render('form', array(
@@ -128,18 +128,19 @@ class LawsController extends Controller {
      */
     public function actionDelete($id) {
         $model = $this->loadModel($id);
-        if ($model->user_id != Yii::app()->user->id && !Yii::app()->user->checkAccess('moderator')) throw new CHttpException (500);
+        if ($model->user_id != Yii::app()->user->id && !Yii::app()->user->checkAccess('moderator'))
+            throw new CHttpException(500);
         $error = !$model->delete();
         if (!isset($_POST['ajax']) && !isset($_GET['ajax'])) {
-			EUserFlash::setSuccessMessage('Закон успешно удален');
+            EUserFlash::setSuccessMessage('Закон успешно удален');
             $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('/laws/index'));
-		}
-		echo json_encode(array(
-			'error' => $error,
-			'params' => array(
-				'id' => isset($_POST['id']) ? $_POST['id'] : '',
-			),
-		));
+        }
+        echo json_encode(array(
+            'error' => $error,
+            'params' => array(
+                'id' => isset($_POST['id']) ? $_POST['id'] : '',
+            ),
+        ));
     }
 
     /**
@@ -149,10 +150,10 @@ class LawsController extends Controller {
         $isMain = false;
         $criteria = new CDbCriteria;
         $criteria->order = 'createtime DESC';
-		if (isset($_POST['search'])) {
-			$criteria->addSearchCondition('`title`', $_POST['search']);
-			$criteria->addSearchCondition('`desc`', $_POST['search'], NULL, 'OR');
-		}
+        if (isset($_POST['search'])) {
+            $criteria->addSearchCondition('`title`', $_POST['search']);
+            $criteria->addSearchCondition('`desc`', $_POST['search'], NULL, 'OR');
+        }
         if ($rating) {
             $criteria->compare('cache_rate', '>=' . $rating);
         }
@@ -161,29 +162,29 @@ class LawsController extends Controller {
             $criteria->together = 1;
             $criteria->compare('owner.username', $user);
         }
-		if ($nonapprove && (Yii::app()->user->checkAccess('moderator') || ($user && $user == Yii::app()->user->name))) {
-			$criteria->compare('approve', 0);
-		} else {
-			$criteria->compare('approve', 1);
-		}
+        if ($nonapprove && (Yii::app()->user->checkAccess('moderator') || ($user && $user == Yii::app()->user->name))) {
+            $criteria->compare('approve', 0);
+        } else {
+            $criteria->compare('approve', 1);
+        }
         $dataProvider = new CActiveDataProvider('Laws', array(
-        	'criteria' => $criteria,
-        ));
+                    'criteria' => $criteria,
+                ));
         $this->render('index', array(
             'dataProvider' => $dataProvider,
             'isMain' => $isMain,
         ));
     }
-    
+
     public function actionMain() {
-    	$isMain = true;
+        $isMain = true;
         $criteria = new CDbCriteria;
         $criteria->order = 'createtime DESC';
-    	$criteria->compare('approve', 1);
-    	$criteria->compare('cache_rate', '>=' . Laws::MAIN_PAGE_RATE);
-    	$dataProvider = new CActiveDataProvider('Laws', array(
-        	'criteria' => $criteria,
-        ));
+        $criteria->compare('approve', 1);
+        $criteria->compare('cache_rate', '>=' . Laws::MAIN_PAGE_RATE);
+        $dataProvider = new CActiveDataProvider('Laws', array(
+                    'criteria' => $criteria,
+                ));
         $this->render('index', array(
             'dataProvider' => $dataProvider,
             'isMain' => $isMain,
@@ -204,12 +205,19 @@ class LawsController extends Controller {
         ));
     }
 
-    public function actionPlusOne($law) {
+    public function actionVote($law) {
+        if ($_POST['do'] == 'plus') {
+            $rate = 1;
+        } elseif ($_POST['do'] == 'minus') {
+            $rate = -1;
+        } else {
+            throw new CHttpException(500);
+        }
         $model = new Rating;
         $model->user_id = Yii::app()->user->id;
         $model->law_id = $law;
         $laws = Laws::model()->findByPk($law);
-        $laws->cache_rate++;
+        $laws->cache_rate += $rate;
         $error = 0;
         if (Yii::app()->user->isGuest) {
             $error = 3;
@@ -221,7 +229,7 @@ class LawsController extends Controller {
             $error = 2;
         }
         if ($error) {
-            $laws->cache_rate--;
+            $laws->cache_rate -= $rate;
         }
         echo json_encode(array(
             'error' => $error,
@@ -267,6 +275,5 @@ class LawsController extends Controller {
             Yii::app()->end();
         }
     }
-     
 
 }

@@ -13,8 +13,9 @@
  * @property integer $cache_rate
  */
 class Laws extends CActiveRecord {
-    
     const MAIN_PAGE_RATE = 10;
+    
+    protected $ratingModel = NULL;
 
     /**
      * Returns the static model of the specified AR class.
@@ -57,7 +58,6 @@ class Laws extends CActiveRecord {
         return array(
             'owner' => array(self::BELONGS_TO, 'Users', 'user_id'),
             'rating' => array(self::STAT, 'Rating', 'law_id'),
-			'isVote' => array(self::STAT, 'Rating', 'law_id', 'condition'=>'user_id=:user', 'params'=>array(':user'=>Yii::app()->user->id)),
         );
     }
 
@@ -96,6 +96,32 @@ class Laws extends CActiveRecord {
 
     public function isEdited() {
         return ((Yii::app()->user->id == $this->user_id && !$this->approve) || Yii::app()->user->checkAccess('moderator'));
+    }
+
+    public function isRated() {
+        if ($this->ratingModel !== NULL) {
+            $this->getRating();
+        }  
+        return $this->ratingModel !== NULL;
+    }
+    
+    public function isOwner() {
+        return ( $this->user_id == Yii::app()->user->id );
+    }
+
+
+    public function getVote () {
+        if ($this->ratingModel !== NULL) {
+            $this->getRating();
+        }  
+        return $this->ratingModel ? $this->ratingModel->type : false;
+    }
+    
+    protected function getRating() {
+        $this->ratingModel = Rating::model()->find('user_id = :user AND law_id = :law', array(
+            ':user' => Yii::app()->user->id,
+            ':law' => $this->id,
+        ));
     }
 
 }
