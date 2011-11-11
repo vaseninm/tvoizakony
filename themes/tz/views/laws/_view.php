@@ -35,36 +35,29 @@
                     </li>
                 <? } ?>
             </ul>
-            <ul class="p-rating">	
+            <ul class="p-rating">
+                <li class="">Рейтинг:</li>
                 <? if ($data->isOwner()) { ?>
-                    //свой закон
+                    <li class="minus-odin-disabled"></li>
                 <? } elseif ($data->isRated() && $data->getVote() > 0) { ?>
-                    //голосовал за
+                    <li class="minus-odin-disabled"></li>
                 <? } elseif ($data->isRated() && $data->getVote() < 0) { ?>
-                    //голосовал против
+                    <li class="minus-odin-voted"></li>
                 <? } else {?>
-                    //не голосовал, закон чужой
-                <? } ?>
+                    <li class="minus-odin ajax-minus"><a href="<?= $this->createUrl('laws/vote', array('law'=>$data->id)) ?>" do="minus" class="ajax-rate">-1</a></li>
+                <? } ?> 
+                    
+                <li class="ajax-rating"><?= (int) $data->cache_rate ?></li>
                 
-                <? if ($data->isRated()) { ?>
-                    <li class="plus-odin-voted ajax-vote"></li>
-                <? } elseif ($data->owner->id == Yii::app()->user->id) { ?>
-                    <li class="plus-odin-disabled ajax-vote"></li>
-                <? } else { ?>
-                    <li class="plus-odin ajax-vote">
-                        <a href="<?= $this->createUrl('laws/plusone', array('law' => $data->id)); ?>" class="ajax-do-vote" do="minus">-1</a>
-                    </li>		
-                <? } ?>
-                <li class="">Рейтинг: <span class="ajax-rating"><?= (int) $data->cache_rate ?></span></li>
-                <? if ($data->isRated()) { ?>
-                    <li class="plus-odin-voted ajax-vote"></li>
-                <? } elseif ($data->owner->id == Yii::app()->user->id) { ?>
-                    <li class="plus-odin-disabled ajax-vote"></li>
-                <? } else { ?>
-                    <li class="plus-odin ajax-vote">
-                        <a href="<?= $this->createUrl('laws/plusone', array('law' => $data->id)); ?>" class="ajax-do-vote" do="plus">+1</a>
-                    </li>		
-                <? } ?>
+                <? if ($data->isOwner()) { ?>
+                    <li class="plus-odin-disabled"></li>
+                <? } elseif ($data->isRated() && $data->getVote() > 0) { ?>
+                    <li class="plus-odin-voted"></li>
+                <? } elseif ($data->isRated() && $data->getVote() < 0) { ?>
+                    <li class="plus-odin-disabled"></li>
+                <? } else {?>
+                    <li class="plus-odin ajax-plus"><a href="<?= $this->createUrl('laws/vote', array('law'=>$data->id)) ?>" do="plus" class="ajax-rate">+1</a></li>
+                <? } ?> 
                 <br class="cl" />
             </ul>
         </div>

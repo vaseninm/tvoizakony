@@ -7,6 +7,7 @@
  * @property integer $id
  * @property integer $user_id
  * @property integer $law_id
+ * @property integer $type
  */
 class Rating extends CActiveRecord
 {
@@ -35,11 +36,11 @@ class Rating extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('user_id, law_id', 'required'),
+			array('user_id, law_id, type', 'required'),
 			array('user_id, law_id', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, user_id, law_id', 'safe', 'on'=>'search'),
+			array('id, user_id, law_id,tpe', 'safe', 'on'=>'search'),
                         array('user_id', 'isUnique'),
 		);
 	}

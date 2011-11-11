@@ -1,15 +1,23 @@
 $(document).ready(function() {
     
     // +1
-    $('.ajax-plus-odin').live('click',function(){
+    $('.ajax-rate').live('click',function(){
         var url = $(this).attr('href');
         var id = $(this).parents('.ajax-post').attr('id');
+        var doo = $(this).attr('do');
         $.post(url, {
-            'id' : id
+            'id' : id,
+            'do' : doo
         }, function(json){
             if (!json.error) {
                 $('#'+json.params.id).find('.ajax-rating').text(json.rating);
-				$('#'+json.params.id).find('.ajax-vote').empty().addClass('plus-odin-voted');
+                if (doo == 'plus') {
+                    $('#'+json.params.id).find('.ajax-plus').empty().removeClass('plus-odin').addClass('plus-odin-voted');
+                    $('#'+json.params.id).find('.ajax-minus').empty().removeClass('plus-odin').addClass('minus-odin-disabled');
+                } else if (doo == 'minus') {
+                    $('#'+json.params.id).find('.ajax-plus').empty().removeClass('plus-odin').addClass('plus-odin-disabled');
+                    $('#'+json.params.id).find('.ajax-minus').empty().removeClass('plus-odin').addClass('minus-odin-voted');
+                }
             } else {
                 switch (json.error) {
                     case 1:
@@ -19,9 +27,8 @@ $(document).ready(function() {
                         alert("Вы уже проголосовали");
                         break;
                     case 3:
-						$('#ajax-rating-non-reg').show(); //Вот  это раскомментить
-						//alert('Вы не зарегистрированы'); // а это удалить
-						break;
+                        $('#ajax-rating-non-reg').show();
+                        break;
                 }
             }
         }, 'json');
@@ -32,7 +39,9 @@ $(document).ready(function() {
     $('a[class^=ajax-setstatus-]').live('click', function() {
         var url = $(this).attr('href');
         var id = $(this).parents('.ajax-post').attr('id');
-        $.post(url,{'id':id}, function(json){
+        $.post(url,{
+            'id':id
+        }, function(json){
             if(!json.error) {
                 $('#'+json.params.id).find('a[class^=ajax-setstatus-]').parent().hide();
                 $('#'+json.params.id).find('.ajax-setstatus-' + json.approve).parent().show();
@@ -41,28 +50,31 @@ $(document).ready(function() {
         return false;
     });
 	
-	// search hint
-	$('#ajax-search-hint').click(function(){
-		var text = $(this).text();
-		$('#ajax-search').attr('value', text);
-		return false;
-	});
+    // search hint
+    $('#ajax-search-hint').click(function(){
+        var text = $(this).text();
+        $('#ajax-search').attr('value', text);
+        return false;
+    });
 	
-	// close non reg div
-	$('#ajax-rating-non-reg-close').click(function () {
-		$('#ajax-rating-non-reg').hide();
-		return false;
-	});
+    // close non reg div
+    $('#ajax-rating-non-reg-close').click(function () {
+        $('#ajax-rating-non-reg').hide();
+        return false;
+    });
 	
-	// delete laws
-	$('.ajax-delete').click(function() {
-		var url = $(this).attr('href');
+    // delete laws
+    $('.ajax-delete').click(function() {
+        var url = $(this).attr('href');
         var id = $(this).parents('.ajax-post').attr('id');
-        $.post(url,{'id':id, 'ajax': true}, function(json){
+        $.post(url,{
+            'id':id, 
+            'ajax': true
+        }, function(json){
             if(!json.error) {
                 $('#'+json.params.id).remove();
             }
         },'json');
         return false;
-	});
+    });
 });

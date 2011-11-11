@@ -216,6 +216,7 @@ class LawsController extends Controller {
         $model = new Rating;
         $model->user_id = Yii::app()->user->id;
         $model->law_id = $law;
+        $model->type = $rate;
         $laws = Laws::model()->findByPk($law);
         $laws->cache_rate += $rate;
         $error = 0;

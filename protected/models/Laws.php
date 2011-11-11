@@ -99,10 +99,10 @@ class Laws extends CActiveRecord {
     }
 
     public function isRated() {
-        if ($this->ratingModel !== NULL) {
+        if ($this->ratingModel === NULL) {
             $this->getRating();
         }  
-        return $this->ratingModel !== NULL;
+        return ( $this->ratingModel !== NULL) ;
     }
     
     public function isOwner() {
@@ -111,7 +111,7 @@ class Laws extends CActiveRecord {
 
 
     public function getVote () {
-        if ($this->ratingModel !== NULL) {
+        if ($this->ratingModel === NULL) {
             $this->getRating();
         }  
         return $this->ratingModel ? $this->ratingModel->type : false;
