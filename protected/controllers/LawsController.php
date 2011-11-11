@@ -149,7 +149,6 @@ class LawsController extends Controller {
     public function actionIndex($rating = false, $user = false, $nonapprove = false) {
         $isMain = false;
         $criteria = new CDbCriteria;
-        $criteria->order = 'createtime DESC';
         if (isset($_POST['search'])) {
             $criteria->addSearchCondition('`title`', $_POST['search']);
             $criteria->addSearchCondition('`desc`', $_POST['search'], NULL, 'OR');
@@ -169,6 +168,13 @@ class LawsController extends Controller {
         }
         $dataProvider = new CActiveDataProvider('Laws', array(
                     'criteria' => $criteria,
+                    'sort' => array(
+                        'defaultOrder' => 'createtime DESC',
+                        'attributes' => array(
+                            'createtime',
+                            'cache_rate',
+                        ),
+                    ),
                 ));
         $this->render('index', array(
             'dataProvider' => $dataProvider,
@@ -179,11 +185,17 @@ class LawsController extends Controller {
     public function actionMain() {
         $isMain = true;
         $criteria = new CDbCriteria;
-        $criteria->order = 'createtime DESC';
         $criteria->compare('approve', 1);
         $criteria->compare('cache_rate', '>=' . Laws::MAIN_PAGE_RATE);
         $dataProvider = new CActiveDataProvider('Laws', array(
                     'criteria' => $criteria,
+                    'sort' => array(
+                        'defaultOrder' => 'createtime DESC',
+                        'attributes' => array(
+                            'createtime',
+                            'cache_rate',
+                        ),
+                    ),
                 ));
         $this->render('index', array(
             'dataProvider' => $dataProvider,

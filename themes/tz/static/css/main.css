@@ -307,6 +307,31 @@ background: url(../img/plus.png) no-repeat 0 -13px;
 background: url(../img/plus.png) no-repeat 0 -26px;
 }
 
+div.sort {
+    margin: 0 20px 15px;
+    font-size: 0.9em;
+    text-align: right;
+}
+
+div.sort ul {
+    display: inline;
+}
+
+div.sort ul li {
+    display: inline;
+    margin: 0 0 0 5px;
+}
+
+div.sort ul li a.desc {
+  background: url("../img/down.gif") no-repeat scroll right center transparent;
+  padding-right: 10px;
+}
+
+div.sort ul li a.asc {
+  background: url("../img/up.gif") no-repeat scroll right center transparent;
+  padding-right: 10px;
+}
+
 /* PROFILE = 
 -----------------------------------------------------------------------------*/
 .cp {

@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    
     // +1
     $('.ajax-rate').live('click',function(){
         var url = $(this).attr('href');
@@ -21,10 +20,10 @@ $(document).ready(function() {
             } else {
                 switch (json.error) {
                     case 1:
-                        alert("Вы не можете голосовать за свои законопроекты.");
+                        alert('Вы не можете голосовать за свои законопроекты.');
                         break;
                     case 2:
-                        alert("Вы уже проголосовали");
+                        alert('Вы уже проголосовали');
                         break;
                     case 3:
                         $('#ajax-rating-non-reg').show();
