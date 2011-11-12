@@ -46,6 +46,8 @@ class YiiMailMessage extends CComponent {
 	* @var Swift_Mime_Message
 	*/
 	public $message;
+        
+        public $data = array();
 
 	/**
 	* Any requests to set or get attributes or call methods on this class that 

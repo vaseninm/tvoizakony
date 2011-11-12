@@ -5,10 +5,10 @@ class UserController extends Controller {
     public function filters() {
         return array(
             'accessControl', // perform access control for CRUD operations
-			array(
+            array(
                 'ext.filters.YXssFilter',
-                'clean'   => '*',
-                'tags'    => 'none',
+                'clean' => '*',
+                'tags' => 'none',
                 'actions' => 'all'
             ),
         );
@@ -24,21 +24,21 @@ class UserController extends Controller {
                 'actions' => array('edit', 'logout'),
                 'users' => array('@'),
             ),
-			array('allow',
-				'actions' => array('admin', 'setRole'),
-				'roles'=>array('administrator'),
-			),
+            array('allow',
+                'actions' => array('admin', 'setRole'),
+                'roles' => array('administrator'),
+            ),
             array('deny', // deny all users
                 'users' => array('*'),
             ),
         );
     }
-	
-	public function beforeAction () {
-		//parent::beforeAction();
-		Yii::app()->breadCrumbs->setCrumb('Пользователь', array('/users/profile'));
-		return true;
-	}
+
+    public function beforeAction() {
+        //parent::beforeAction();
+        Yii::app()->breadCrumbs->setCrumb('Пользователь', array('/users/profile'));
+        return true;
+    }
 
     public function actionEdit() {
         $model = new EditForm;
@@ -59,14 +59,14 @@ class UserController extends Controller {
                 }
                 $profile = Profiles::model()->find('user_id = :user', array(':user' => Yii::app()->user->id));
                 $profile->attributes = $model->attributes;
-				
+
                 if (isset($_FILES['EditForm'])) {
                     $_FILES['Profiles'] = $_FILES['EditForm'];
                     CUploadedFile::reset();
                 }
                 if (!$profile->save())
                     throw new CHttpException(500, "Unknown Error");
-				EUserFlash::setSuccessMessage('Профиль успешно отредактирован');
+                EUserFlash::setSuccessMessage('Профиль успешно отредактирован');
                 $this->redirect(array('/user/profile'));
             }
         }
@@ -105,7 +105,7 @@ class UserController extends Controller {
         if (isset($_POST['LoginForm'])) {
             $model->attributes = $_POST['LoginForm'];
             if ($model->validate() && $model->login()) {
-				EUserFlash::setSuccessMessage('Вы успешно авторизованы.');
+                EUserFlash::setSuccessMessage('Вы успешно авторизованы.');
                 $this->redirect(Yii::app()->user->returnUrl);
             }
         }
@@ -114,7 +114,7 @@ class UserController extends Controller {
 
     public function actionLogout() {
         Yii::app()->user->logout();
-		EUserFlash::setSuccessMessage('Вы успешно вышли.');
+        EUserFlash::setSuccessMessage('Вы успешно вышли.');
         $this->redirect(Yii::app()->homeUrl);
     }
 
@@ -139,16 +139,16 @@ class UserController extends Controller {
                 $profile->user_id = $user->id;
                 if (!$profile->save())
                     throw new CHttpException(500, "Unknown Error");
-				$message = new YiiMailMessage;
+                $message = new YiiMailMessage;
                 $message->subject = 'Регистрация на TvoiZakony.ru';
-				$message->view = 'registration';
-				$message->data['username'] = $user->username;
+                $message->view = 'registration';
+                $message->data['username'] = $user->username;
                 $message->setBody();
                 $message->addTo($model->email);
                 $message->from = Yii::app()->params['adminEmail'];
                 Yii::app()->mail->send($message);
                 EUserFlash::setSuccessMessage('Вы успешно зарегистрировались.');
-				$this->redirect(array('user/login'));
+                $this->redirect(array('user/login'));
             }
         }
         $this->render('registration', array('model' => $model));
@@ -165,20 +165,20 @@ class UserController extends Controller {
             $model->attributes = $_POST['RetrieveForm'];
 
             if ($model->validate()) {
-                $password = substr( md5(rand() . 'sDfFe' . rand()), 3, 13);
+                $password = substr(md5(rand() . 'sDfFe' . rand()), 3, 13);
                 $user = Users::model()->find('email = :email', array(':email' => $model->email));
                 $user->password = $user->getPasswordHash($password);
                 if ($user->save()) {
                     $message = new YiiMailMessage;
                     $message->subject = 'Восстановление пароля на TvoiZakony.ru';
-					$message->view = 'retrieve';
-					$message->data['password'] = $password;
+                    $message->view = 'retrieve';
+                    $message->data['password'] = $password;
                     $message->setBody();
                     $message->addTo($model->email);
                     $message->from = Yii::app()->params['adminEmail'];
                     Yii::app()->mail->send($message);
-					EUserFlash::setSuccessMessage('Новый пароль отправлен на Ваш e-mail.');
-					$this->redirect(array('/user/login'));
+                    EUserFlash::setSuccessMessage('Новый пароль отправлен на Ваш e-mail.');
+                    $this->redirect(array('/user/login'));
                 }
             }
         }
@@ -187,8 +187,7 @@ class UserController extends Controller {
         ));
     }
 
-	
-	public function actionAdmin() {
+    public function actionAdmin() {
         $model = new Users('search');
         $model->unsetAttributes();  // clear any default values
         if (isset($_GET['Users']))
@@ -198,10 +197,11 @@ class UserController extends Controller {
             'model' => $model,
         ));
     }
-	
-	public function actionSetRole () {
-		$model = Users::model()->findByPk($_POST['item']);
-		$model->role = $_POST['value'];
-		$model->save();
-	}
+
+    public function actionSetRole() {
+        $model = Users::model()->findByPk($_POST['item']);
+        $model->role = $_POST['value'];
+        $model->save();
+    }
+
 }
