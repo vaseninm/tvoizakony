@@ -57,7 +57,10 @@
                     <li class="plus-odin-disabled"></li>
                 <? } else {?>
                     <li class="plus-odin ajax-plus"><a href="<?= $this->createUrl('laws/vote', array('law'=>$data->id)) ?>" do="plus" class="ajax-rate">+1</a></li>
-                <? } ?> 
+                <? } ?>
+				<? if (isset($isItem)) { ?>
+					<li><div style="margin:-5px 0 0 20px;" class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="none" data-yashareQuickServices="yaru,vkontakte,facebook,twitter,odnoklassniki,moimir,lj"></div></li>
+				<? } ?>
                 <br class="cl" />
             </ul>
         </div>
