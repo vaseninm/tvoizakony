@@ -40,8 +40,6 @@
 		<script type="text/javascript" language="JavaScript" src="http://reformal.ru/tab6.js?charset=utf-8"></script>
 		<noscript>
 			<a href="http://tvoizakony.ru"><img src="http://tvoizakony.ru/themes/tz/static/img/tvoi-zakony.png" /></a>
-			<a href="http://tvoizakony.reformal.ru">Твои Законы feedback</a>
-			<a href="http://reformal.ru"><img src="http://reformal.ru/i/logo.gif" /></a>
 		</noscript>
     </head>
 
