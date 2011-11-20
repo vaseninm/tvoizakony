@@ -6,9 +6,6 @@
     Yii::app()->breadCrumbs->setCrumb($model->title);
 ?>
 
-<? $this->renderPartial('_view', array('data' => $model)) ?>
+<? $this->renderPartial('_view', array('isItem' => true, 'data' => $model,)) ?>
 <div class="text"><p><?= $model->desc ?></p></div>
-<? $this->widget('ext.ECommentable.ECommentableWidget', array(
-    'model' => $model,
-)) ?>
 
