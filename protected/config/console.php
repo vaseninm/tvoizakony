@@ -9,10 +9,10 @@ return array(
 	'components'=>array(
 
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=u1468143_tz',
+			'connectionString' => 'mysql:host=localhost;dbname=tz',
 			'emulatePrepare' => true,
-			'username' => 'u1468143_tz',
-			'password' => 'qwaszx',
+			'username' => 'root',
+			'password' => 'QWASZX',
 			'charset' => 'utf8',
 		),
 		

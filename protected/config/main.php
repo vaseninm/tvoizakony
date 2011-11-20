@@ -22,6 +22,16 @@ return array(
 		'application.extensions.phaActiveColumn.*',
     ),
     'modules' => array(
+        'gii' => array (
+            'class'=>'system.gii.GiiModule',
+            'password'=>'qwaszx',
+        ),
+    ),
+    'controllerMap'=>array(
+        'ecomments'=>array(
+            'class'=>'ext.ECommentable.ECommentsController',
+        ),
+        // прочие контроллеры
     ),
     // application components
     'components' => array(

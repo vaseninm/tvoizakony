@@ -14,7 +14,7 @@
  */
 class Laws extends CActiveRecord {
     const MAIN_PAGE_RATE = 10;
-    
+
     protected $ratingModel = NULL;
 
     /**
@@ -61,6 +61,14 @@ class Laws extends CActiveRecord {
         );
     }
 
+    public function behaviors() {
+        return array(
+            'commentable' => array(
+                'class' => 'ext.ECommentable.ECommentableBehavior',
+            ),
+        );
+    }
+
     /**
      * @return array customized attribute labels (name=>label)
      */
@@ -101,27 +109,26 @@ class Laws extends CActiveRecord {
     public function isRated() {
         if ($this->ratingModel === NULL) {
             $this->getRating();
-        }  
-        return ( $this->ratingModel !== NULL) ;
+        }
+        return ( $this->ratingModel !== NULL);
     }
-    
+
     public function isOwner() {
         return ( $this->user_id == Yii::app()->user->id );
     }
 
-
-    public function getVote () {
+    public function getVote() {
         if ($this->ratingModel === NULL) {
             $this->getRating();
-        }  
+        }
         return $this->ratingModel ? $this->ratingModel->type : false;
     }
-    
+
     protected function getRating() {
         $this->ratingModel = Rating::model()->find('user_id = :user AND law_id = :law', array(
             ':user' => Yii::app()->user->id,
             ':law' => $this->id,
-        ));
+                ));
     }
 
 }
