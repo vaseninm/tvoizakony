@@ -39,31 +39,33 @@ class ECommentableBehavior extends CActiveRecordBehavior {
         return $comments;
     }
 
-    public function edit($id, $text) {
+    public function edit($id, $text, $save = true) {
         $comments = $this->getCommentModel($id);
-        if ($comments->user_id != Yii::app()->user->id)
-            return false;
         $comments->text = $text;
-        return $comments->save();
+        if ($save && !$comments->save()) {
+            return false;
+        }
+        return $comments;
     }
 
-    public function delete($id) {
+    public function delete($id, $save = true) {
         $comments = $this->getCommentModel($id);
-        if ($comments->user_id != Yii::app()->user->id)
-            return false;
         $comments->status = Comments::STATUS_DELETE;
-        return $comments->save();
+        if ($save && !$comments->save()) {
+            return false;
+        }
+        return $comments;
     }
 
     public function get() {
         return Comments::model()->tree(array(
-                            'condition' => 'relation.model_id = :modelid AND relation.model_name=:modelname',
-                            'params' => array(
-                                ':modelid' => $this->owner->primaryKey,
-                                ':modelname' => get_class($this->owner),
-                            ),
-                            'with' => array('relation'),
-                                ));
+                    'condition' => 'relation.model_id = :modelid AND relation.model_name=:modelname',
+                    'params' => array(
+                        ':modelid' => $this->owner->primaryKey,
+                        ':modelname' => get_class($this->owner),
+                    ),
+                    'with' => array('relation'),
+                ));
     }
 
     public function addComment($text, $parent = 0) {
@@ -102,7 +104,7 @@ class ECommentableBehavior extends CActiveRecordBehavior {
     }
 
     protected function getCommentModel($id) {
-        $model = Comments::findByPk($id);
+        $model = Comments::model()->findByPk($id);
         if (!$model)
             throw new CHttpException(404);
         return $model;

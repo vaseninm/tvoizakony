@@ -59,21 +59,21 @@ class ECommentsController extends CExtController {
         ));
     }
 
-    public function actionEdit() {
+    public function actionDelete($modelname, $modelid) {
+        if (Yii::app()->user->checkAccess('moderator')) {
+            $model = CActiveRecord::model($modelname)->findByPk($modelid)->deleteComment($_POST['commentid']);
+        }
+        $html = false;
+        if (isset($model)) {
+            $model->save();
+            $html = $this->renderPartial('_item', array(
+                'comment' => $model
+                    ), true);
+        }
         echo json_encode(array(
-            'error' =>
-                    CActiveRecord::model($_POST['modelname'])
-                    ->findByPk($_POST['modelid'])
-                    ->editComment($_POST['commentid'], $_POST['text'])
-        ));
-    }
-
-    public function actionDelete() {
-        echo json_encode(array(
-            'error' =>
-                    CActiveRecord::model($_POST['modelname'])
-                    ->findByPk($_POST['modelid'])
-                    ->deleteComment($_POST['commentid'])
+            'error' => !$html,
+            'html' => $html,
+            'divid' => $_POST['divid'],
         ));
     }
 

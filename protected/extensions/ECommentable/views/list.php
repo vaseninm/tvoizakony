@@ -5,22 +5,24 @@
  */
 ?>
 
-<div id="comments">
+<div id="comments" class="ajax-comments">
     <? if (empty($comments)) { ?>
         <h3>Нет комментариев</h3>
     <? } else { ?>
         <h3>Обсуждение</h3>
-        <span><?= count($comments) ?> комментария к законопроекту "<?= $owner->title ?>"</span>
+        <p><span class="ajax-comments-count"><?= count($comments) ?></span> комментария к законопроекту "<?= $owner->title ?>"</p>
         <? foreach ($comments as $comment) { ?>
             <?=
             $this->render('_item', array(
                 'comment' => $comment,
+                'owner' => $owner,
             ));
             ?>
     <? } ?>
 <? } ?>    
 </div>
-<p class="add-comment"><a href="#" class="ajax-add-comment" parent="0">Добавить комментарий</a></p>
+<? if(Yii::app()->user->checkAccess('writer')) { ?>
+<p class="add-comment"><a href="#" class="ajax-add-comment ajax-add-comment-not-parent" parent="0">Добавить комментарий</a></p>
 
 <div class="ajax-answer-example" style="display: none">
     <?=
@@ -29,3 +31,4 @@
     ));
     ?>
 </div>
+<? } ?>

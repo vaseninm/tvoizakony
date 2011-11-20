@@ -113,4 +113,8 @@ class Comments extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        
+        public function isOwner () {
+            return (Yii::app()->user->id == $this->user_id); 
+        }
 }
