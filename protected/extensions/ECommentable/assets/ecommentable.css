@@ -1,0 +1,61 @@
+/* COMMENTS: =comments
+------------------------------------------------------------*/
+#comments {
+	margin-top: 30px;
+	padding: 25px 0 0 0;
+}
+#comments h3 {
+	color: #5d616e;
+}
+#comments span {
+	display: block;
+	color: #5d616e;
+	font-size: .9em;
+	font-style: oblique;
+	margin-bottom: 20px;
+}
+#comments ul li {
+	display: inline-block;
+	margin-left: 10px;
+}
+#comments .gravatar {
+    position: relative;
+    padding: 4px 10px 0 0;
+	height: 23px;
+	width: 23px;
+}
+#comments .date {
+	margin-bottom: 10px;
+}
+#comments .comment-info {
+	border-bottom: 1px dotted #5c606e;
+}
+#comments .comment {
+	margin-bottom: 20px;
+}
+#comments .comment-info,
+#comments .answer-one {
+	margin-left: 35px;
+}
+#comments .answer-two {
+	margin-left: 70px;
+}
+#comments .answer-three {
+	margin-left: 105px;
+}
+#comments .answer-four {
+	margin-left: 140px;
+}
+#comments .answer-five {
+	margin-left: 175px;
+}
+#comments .answer-six {
+	margin-left: 210px;
+}
+#comments .answer-seven {
+	margin-left: 245px;
+}
+#comments .admin {
+	border: none;
+}
+
