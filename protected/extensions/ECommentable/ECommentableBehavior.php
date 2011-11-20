@@ -7,6 +7,8 @@
  */
 class ECommentableBehavior extends CActiveRecordBehavior {
 
+    public $allowedTags = array('a', 'img', 'blockquote', 'b', 'i', 's');
+    
     public function add($text, $parent = 0) {
         if ($parent > 0) {
             $parentModel = Comments::model()->findByPk($parent);
@@ -22,7 +24,7 @@ class ECommentableBehavior extends CActiveRecordBehavior {
         $comments = new Comments;
         $relation = new CommentRelation;
 
-        $comments->text = $text;
+        $comments->text = $this->stripTags($text);
         $comments->parent_id = $parent;
         $comments->level = $level;
         $comments->createtime = time();
@@ -41,7 +43,7 @@ class ECommentableBehavior extends CActiveRecordBehavior {
 
     public function edit($id, $text, $save = true) {
         $comments = $this->getCommentModel($id);
-        $comments->text = $text;
+        $comments->text = $this->stripTags($text);
         if ($save && !$comments->save()) {
             return false;
         }
@@ -108,6 +110,14 @@ class ECommentableBehavior extends CActiveRecordBehavior {
         if (!$model)
             throw new CHttpException(404);
         return $model;
+    }
+    
+    protected function stripTags($text) {
+        $tags = '';
+        foreach ($this->allowedTags as $tag) {
+            $tags .= "<$tag>";
+        }
+        return strip_tags($text, $tags);
     }
 
 }

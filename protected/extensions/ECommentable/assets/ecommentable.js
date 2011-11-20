@@ -17,6 +17,15 @@ $(document).ready(function() {
         return false;
     });
     $(document).delegate('.ajax-comment-form', 'submit', function(){
+        if ($(this).find('textarea[name=text]').val() == '') {
+            alert("empty comment"); //Эту сторочку потрешь
+            //$('.ajax-empty-comment').show(1000).delay(2000).hide(500);//
+            //А предыдущуюю раскоментишь. Конкретно эта берет элемент с классом 
+            //ajax-empty-comment. Он начинает появлятся в течении секунды. Потом
+            //потом еще две висит и пол секунды исчезает. Это ошибка типа текст
+            //коммента не введен. Ну и все эти комменты потри =)
+            return false;
+        }
         var url = $(this).attr('action');
         var parent = $(this).find('input[name=parent]').attr('value');
         divform = $(this).parent('.ajax-form-after');

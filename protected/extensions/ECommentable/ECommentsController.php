@@ -43,14 +43,15 @@ class ECommentsController extends CExtController {
     public function actionAdd() {
         parse_str($_POST['form'], $array);
         $parent = isset($array['parent']) ? $array['parent'] : 0;
-        $model = CActiveRecord::model($array['modelname'])
-                ->findByPk($array['modelid'])
-                ->addComment($array['text'], $parent);
+        $model = CActiveRecord::model($array['modelname'])->findByPk($array['modelid']);
+        $comment = $model->addComment($array['text'], $parent);
         $html = false;
-        if ($model) {
+        if ($comment) {
             $html = $this->renderPartial('_item', array(
-                'comment' => $model
-                    ), true);
+                'comment' => $comment,
+                'owner' => $model,
+                    ), true
+            );
         }
 
         echo json_encode(array(
@@ -60,14 +61,16 @@ class ECommentsController extends CExtController {
     }
 
     public function actionDelete($modelname, $modelid) {
+        $model = CActiveRecord::model($modelname)->findByPk($modelid);
         if (Yii::app()->user->checkAccess('moderator')) {
-            $model = CActiveRecord::model($modelname)->findByPk($modelid)->deleteComment($_POST['commentid']);
+            $comment = $model->deleteComment($_POST['commentid']);
         }
         $html = false;
-        if (isset($model)) {
-            $model->save();
+        if (isset($comment)) {
+            $comment->save();
             $html = $this->renderPartial('_item', array(
-                'comment' => $model
+                'comment' => $comment,
+                'owner' => $model,
                     ), true);
         }
         echo json_encode(array(

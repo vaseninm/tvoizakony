@@ -47,7 +47,7 @@
 		<? $this->widget('ext.EUserFlash', array(
 			'initScript'=>'$(".userflash").hide().slideDown("slow").delay(3000).slideUp("slow");',
 		)); ?>
-		<div class="flash-box" id="ajax-rating-non-reg" style="display:none";>
+		<div class="flash-box" id="ajax-rating-non-reg" style="display:none">
 			<div class="flash-box-content">
 				<h3>Извините, но голосовать могут только зарегистрированные пользователи.</h3>
 				<p>Если вы уже зарегистрированы, можете пройти <a href="<?= $this->createUrl('/user/login') ?>">авторизацию</a> или же предлагаем вам <a href="<?= $this->createUrl('/user/registration') ?>">зарегистрироваться</a>.</p>
