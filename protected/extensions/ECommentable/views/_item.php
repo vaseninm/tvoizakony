@@ -6,7 +6,7 @@ $level = ($comment->level > 6) ? 6 : $comment->level;
         src="<?= $comment->owner->profile->bavatar->getFileUrl('thumb') ?>"
         title="<?= CHtml::encode($comment->owner->profile->lastname) ?> <?= CHtml::encode($comment->owner->profile->firstname) ?>" 
         alt="<?= CHtml::encode($comment->owner->profile->lastname) ?> <?= CHtml::encode($comment->owner->profile->firstname) ?>" 
-        class="gravatar left"
+        class="gravatar fl"
         />
 
     <div class="comment-info">
@@ -17,5 +17,5 @@ $level = ($comment->level > 6) ? 6 : $comment->level;
         </div>
     </div>
 
-    <ul class="right"><li><a href="#" parent="<?= ($comment->id) ?>" class="ajax-add-comment">ответить</a></li><li><a href="#">редактировать</a></li><li><a href="#">удалить</a></li></ul>
+    <ul class="fr"><li><a href="#" parent="<?= ($comment->id) ?>" class="ajax-add-comment">ответить</a></li><li><a href="#">редактировать</a></li><li><a href="#">удалить</a></li></ul>
 </div>

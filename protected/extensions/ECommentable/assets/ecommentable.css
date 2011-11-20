@@ -6,6 +6,7 @@
 }
 #comments h3 {
 	color: #5d616e;
+	margin-bottom:0px!important;
 }
 #comments span {
 	display: block;
@@ -59,3 +60,70 @@
 	border: none;
 }
 
+/* RESPOND =respond
+-----------------------------------------------------------------------------*/
+#respond {
+	margin: 10px 0 0 24px;
+}
+#respond h3 {
+	color: #5d616e;
+}
+#respond span {
+	display: block;
+	color: #5d616e;
+	font-size: .9em;
+	font-style: oblique;
+	margin-bottom: 20px;
+}
+#respond fieldset {
+}
+#respond p {
+	margin-top: 8px;
+	overflow: hidden;
+}
+#respond label {
+	display: block;
+	font-size: 1.13em;
+	float: left;
+	margin-top: 10px;
+	padding-right: 20px;
+	width: 90px;
+}
+#respond textarea {
+	border: 2px solid #e6e6e6;
+	font-size: 1.13em;
+	margin: 3px 0;
+	padding: 8px;
+	height: 100px;
+	width: 397px;
+	resize: vertical !important;
+}
+#respond .a-tags {
+	color: #5d616e;
+	font-family:"Courier New", Courier, monospace;
+}
+#respond p.logged_in,
+#respond p.cancel-comment-reply {
+	font-size: 1.13em;
+	line-height: 22px;
+	margin-bottom: 0;
+}
+#respond fieldset.border {
+	border-bottom: 1px dotted #cccccc;
+	margin-top: 15px;
+}
+#respond input.text {
+	border: 2px solid #e6e6e6;
+	float: left;
+	font-size: 1.13em;
+	padding: 8px;
+	width: 397px;
+}
+#respond input.required {
+	background: #fff url(../img/required.png) 338px 50% no-repeat;
+	padding-right: 91px;
+	width: 315px;
+}
+#respond .submit_button {
+	margin: 13px 0 40px 110px;
+}
