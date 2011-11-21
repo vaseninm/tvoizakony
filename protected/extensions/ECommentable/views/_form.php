@@ -18,8 +18,10 @@
 		<?= CHtml::hiddenField('parent', 0); ?>
 		<?= CHtml::hiddenField('modelname', get_class($owner)); ?>
 		<?= CHtml::hiddenField('modelid', $owner->primaryKey); ?>
-		<p class="submit_button"><?= CHtml::submitButton('Отправить', array('class'=>'ajax-comment-send rl-button'));?></p>
-                <p class="submit_button"><?= CHtml::button('Отмена', array('class'=>'ajax-comment-cancel rl-button'));?></p>
+		<ul>
+			<li class="submit_button"><?= CHtml::submitButton('Отправить', array('class'=>'ajax-comment-send rl-button'));?></li>
+			<li><?= CHtml::button('Отмена', array('class'=>'ajax-comment-cancel rl-button'));?></li>
+		</ul>
 	</fieldset>
     <?= CHtml::endForm(); ?>
 </div>

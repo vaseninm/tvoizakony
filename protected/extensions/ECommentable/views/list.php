@@ -10,7 +10,7 @@
         <h3>Нет комментариев</h3>
     <? } else { ?>
         <h3>Обсуждение</h3>
-        <p><span class="ajax-comments-count"><?= count($comments) ?></span> комментария к законопроекту "<?= $owner->title ?>"</p>
+        <span><empty class="ajax-comments-count"><?= count($comments) ?></empty> комментария к законопроекту "<?= $owner->title ?>"</span>
         <? foreach ($comments as $comment) { ?>
             <?=
             $this->render('_item', array(
