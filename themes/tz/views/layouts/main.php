@@ -15,9 +15,10 @@
 		<!--[if lte IE 6]><link rel="stylesheet" href="<?= Yii::app()->theme->baseUrl ?>/static/css/style_ie.css" type="text/css" media="screen, projection" /><![endif]-->
 		<script src="//platform.twitter.com/widgets.js" type="text/javascript"></script>
 		<script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
-		<?$this->widget('ext.googleAnalytics.EGoogleAnalyticsWidget',
+		<? $this->widget('ext.googleAnalytics.EGoogleAnalyticsWidget',
 			array('account'=>'UA-9356976-6','domainName'=>'.tvoizakony.ru')
 		);?>
+                <? $this->widget('ext.prettyLoader.prettyLoader'); ?>
 		<script type="text/javascript">
 			reformal_wdg_domain    = "tvoizakony";
 			reformal_wdg_mode    = 0;
