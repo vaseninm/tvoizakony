@@ -5,12 +5,13 @@ $(document).ready(function() {
         if (!(parent > 0)) parent = 0;
         if ($(this).next('.ajax-form-after').length == 0) {
             if (parent == 0) {
-                $(this).parent().siblings('.ajax-comments').append(form);
+                $(this).parent().siblings('.ajax-comments').append(form).find('textarea[name=text]').focus();
+                
             } else {
                 var div = $(this).parents('.ajax-comment');
                 $(form).insertAfter(div).find('input[name=parent]').attr('value', parent);
+                div.next().find('textarea[name=text]').focus();
             }
-            div.next().find('textarea[name=text]').focus();
             $(this).parent().hide();
         } 
        
