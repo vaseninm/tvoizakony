@@ -21,7 +21,7 @@ class UserController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('edit', 'logout'),
+                'actions' => array('edit', 'logout', 'changepassword'),
                 'users' => array('@'),
             ),
             array('allow',
@@ -34,10 +34,33 @@ class UserController extends Controller {
         );
     }
 
-    public function beforeAction() {
-        //parent::beforeAction();
+    public function beforeAction($view) {
+        parent::beforeAction($view);
         Yii::app()->breadCrumbs->setCrumb('Пользователь', array('/users/profile'));
         return true;
+    }
+
+    public function actionChangePassword() {
+        $model = new PasswordForm;
+        
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'changepassword-form') {
+            echo CActiveForm::validate($model);
+            Yii::app()->end();
+        }
+
+        if (isset($_POST['PasswordForm'])) {
+            $model->attributes = $_POST['PasswordForm'];
+            if ($model->validate()) {
+                $user = Users::model()->findByPk(Yii::app()->user->id);
+                $user->password = $user->getPasswordHash($model->password1);
+                if ($user->save()) {
+                    EUserFlash::setSuccessMessage('Пароль успешно изменен');
+                    $this->redirect(array('/user/profile'));
+                }
+            }      
+        }
+        
+        $this->render('changepassword', array('model' => $model));
     }
 
     public function actionEdit() {
@@ -51,12 +74,6 @@ class UserController extends Controller {
         if (isset($_POST['EditForm'])) {
             $model->attributes = $_POST['EditForm'];
             if ($model->validate()) {
-                if (!empty($model->password1)) {
-                    $user = Users::model()->findByPk(Yii::app()->user->id);
-                    $user->password = $user->getPasswordHash($model->password1);
-                    if (!$user->save())
-                        throw new CHttpException(500, "Unknown Error");
-                }
                 $profile = Profiles::model()->find('user_id = :user', array(':user' => Yii::app()->user->id));
                 $profile->attributes = $model->attributes;
 

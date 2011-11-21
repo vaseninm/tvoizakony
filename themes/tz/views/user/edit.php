@@ -33,18 +33,6 @@
         </p>
 
         <p>
-            <label for="email">Пароль:</label>
-            <?php echo $form->passwordField($model, 'password1', array('class' => 'rl-text')); ?>
-            <?php echo $form->error($model, 'password1'); ?>
-        </p>
-
-        <p>
-            <label for="email">Повторите пароль:</label>
-            <?php echo $form->passwordField($model, 'password2', array('class' => 'rl-text')); ?>
-            <?php echo $form->error($model, 'password2'); ?>
-        </p>
-
-        <p>
             <label for="email">Фото:</label>
             <?php echo $form->fileField($model, 'avatar', array('class' => 'rl-text')); ?>
             <?php echo $form->error($model, 'avatar'); ?>
