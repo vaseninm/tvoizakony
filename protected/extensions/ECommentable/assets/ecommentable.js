@@ -2,14 +2,15 @@ $(document).ready(function() {
     $(document).delegate('.ajax-add-comment', 'click', function(){
         var form = $('.ajax-answer-example').html();
         var parent = $(this).attr('parent');
+        var level = $(this).parents('.ajax-comment').attr('level')*1 + 1;
         if (!(parent > 0)) parent = 0;
         if ($(this).next('.ajax-form-after').length == 0) {
             if (parent == 0) {
-                $(this).parent().siblings('.ajax-comments').append(form).find('textarea[name=text]').focus();
-                
+                $(this).parent().siblings('.ajax-comments').append(form).find('textarea[name=text]').focus();        
             } else {
                 var div = $(this).parents('.ajax-comment');
                 $(form).insertAfter(div).find('input[name=parent]').attr('value', parent);
+                div.next().css('margin-left', (level * 35) + 'px');
                 div.next().find('textarea[name=text]').focus();
             }
             $(this).parent().hide();
@@ -19,7 +20,7 @@ $(document).ready(function() {
     });
     $(document).delegate('.ajax-comment-form', 'submit', function(){
         if ($(this).find('textarea[name=text]').val() == '') {
-            $('.ajax-empty-comment').show(1000).delay(2000).hide(500);//
+            $('.ajax-empty-comment').slideDown('slow').delay(3000).slideUp('slow');
             return false;
         }
         var url = $(this).attr('action');
@@ -34,7 +35,7 @@ $(document).ready(function() {
                 var prevdiv = divform.prev();
                 divform.replaceWith(json.html);
                 if (parent == 0) {
-                    $('.ajax-add-comment-not-parent').show();
+                    $('.ajax-add-comment-not-parent').parent().show();
                 } else {
                     var level = prevdiv.attr('level');
                     $.each(prevdiv.nextAll(), function(key, value) {
@@ -47,6 +48,10 @@ $(document).ready(function() {
                     prevdiv.find('.ajax-add-comment').parent().show();
                 }
                 $(".ajax-comments-count").text($(".ajax-comments-count").text() * 1 + 1);
+                if ($(".ajax-comments-count").text() == 1) {
+                    $('.ajax-has-comment').show();
+                    $('.ajax-no-comment').hide();
+                }
             }
         }, 'json');
         return false;
@@ -56,7 +61,12 @@ $(document).ready(function() {
         return false;
     });
     $(document).delegate('.ajax-comment-cancel', 'click', function(){
-        $(this).parents('.ajax-form-after').prev().find('.ajax-add-comment').parent().show();
+        var parent = $(this).parents('.ajax-comment-form').find('input[name=parent]').attr('value');
+        if (parent == 0) {
+            $('.ajax-add-comment-not-parent').parent().show();
+        } else {
+            $(this).parents('.ajax-form-after').prev().find('.ajax-add-comment').parent().show();
+        }
         $(this).parents('.ajax-form-after').remove();
         return false;
     });

@@ -20,6 +20,7 @@ class PrettyLoader extends CWidget{
                     $.prettyLoader({
                         bind_to_ajax: true,
                         loader: "'.$this->assetsUrl.'/ajax-loader.gif",
+                        animation_speed: 100
                     });
             });
         ');
