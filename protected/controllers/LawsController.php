@@ -231,6 +231,7 @@ class LawsController extends Controller {
         $model->type = $rate;
         $laws = Laws::model()->findByPk($law);
         $laws->cache_rate += $rate;
+        $laws->cache_vote_count++;
         $error = 0;
         if (Yii::app()->user->isGuest) {
             $error = 3;
@@ -243,6 +244,7 @@ class LawsController extends Controller {
         }
         if ($error) {
             $laws->cache_rate -= $rate;
+            $laws->cache_vote_count--;
         }
         echo json_encode(array(
             'error' => $error,

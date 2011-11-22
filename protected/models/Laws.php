@@ -11,6 +11,7 @@
  * @property integer $createtime
  * @property integer $approve
  * @property integer $cache_rate
+ * @property integer $cache_vote_count
  */
 class Laws extends CActiveRecord {
     const MAIN_PAGE_RATE = 10;
