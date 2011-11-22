@@ -34,6 +34,8 @@
         ));
         ?>
     </div>
-    
-    <div class="flash-notice ajax-empty-comment" style="display: none;">Напишите комментарий</div>
+<style>
+	.flash-comments { background: #000; color: #fff; font-size: 1.4em; display: table; height: 20px; width: 100%; padding: 1em; opacity: 0.7; position: fixed; top: 0; left: 0; }
+</style>
+    <div class="flash-comments ajax-empty-comment" style="display: none;">Напишите комментарий</div>
 <? } ?>

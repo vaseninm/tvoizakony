@@ -3,7 +3,7 @@ $level = ($comment->level > 6) ? 6 : $comment->level;
 ?>
 <div class="comment ajax-comment" style="margin-left: <?= 35 * $level ?>px" level="<?= $comment->level ?>" id="comment-<?= $comment->id ?>">
     <? if ($comment->status == Comments::STATUS_DELETE) { ?>
-        <p style="color:#b1b7ca; font-style:italic; background:url(http://miron.in/images/crabe.png) no-repeat; padding-left:50px; margin-left: 35px; height: 20px;">Владимир Путин пришел и опубликовал этот комметарий.<p>
+        <p style="color:#b1b7ca; font-style:italic; background:url(http://miron.in/images/crabe.png) no-repeat; padding-left:50px; margin-left: 35px; height: 20px;">Комментарий был удален модератором.<p>
     <? } else { ?>
         <img
             src="<?= $comment->owner->profile->bavatar->getFileUrl('thumb') ?>"
