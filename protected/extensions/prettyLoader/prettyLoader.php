@@ -11,7 +11,7 @@
 class PrettyLoader extends CWidget{
     protected $assetsUrl;
     public function init(){
-        $this->assetsUrl=Yii::app()->assetManager->publish(__DIR__.'/assets','',1,YII_DEBUG);
+        $this->assetsUrl=Yii::app()->assetManager->publish(dirname(__FILE__).'/assets','',1,YII_DEBUG);
         Yii::app()->clientScript->registerScriptFile($this->assetsUrl.'/'.'jquery.prettyLoader.js');
         Yii::app()->clientScript->registerCssFile($this->assetsUrl.'/prettyLoader.css');
         Yii::app()->getClientScript()->registerCoreScript('jquery')
