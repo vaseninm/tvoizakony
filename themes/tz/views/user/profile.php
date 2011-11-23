@@ -47,6 +47,7 @@ $this->widget('application.extensions.fancybox.EFancyBox', array(
                     ); ?>
                 </a>
             </li>
+            <li>Комментариев: <?= Comments::model()->count('user_id = :user', array(':user'=>$model->id)); ?></li>
         </ul>
     </div>
     <div class="m-title">

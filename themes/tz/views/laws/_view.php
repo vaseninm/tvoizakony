@@ -61,7 +61,9 @@
                 <? } ?>
 				<? if (isset($isItem)) { ?>
 					<li><div style="margin:-5px 0 0 20px;" class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="none" data-yashareQuickServices="yaru,vkontakte,facebook,twitter,odnoklassniki,moimir,lj"></div></li>
-				<? } ?>
+				<? } else { ?>
+                                       <li>Комментариев: <?= $data->commentCount; ?></li> 
+                                <? } ?>        
                 <br class="cl" />
             </ul>
         </div>
