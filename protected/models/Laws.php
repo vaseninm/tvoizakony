@@ -14,7 +14,7 @@
  * @property integer $cache_vote_count
  */
 class Laws extends CActiveRecord {
-    const MAIN_PAGE_RATE = 10;
+    const MAIN_PAGE_RATE = 5;
 
     protected $ratingModel = NULL;
 
