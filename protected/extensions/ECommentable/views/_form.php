@@ -10,7 +10,7 @@
 	<div>
             <code class="a-tags">
                 <a href="#" class="ajax-tags">Разрешенные теги:</a>
-                <p class="ajax-tags" style="display:none"> &lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt;</p>
+                <p class="ajax-tags" style="display:none"> &lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;b&gt; &lt;i&gt; &lt;s&gt;</p>
             </code>
         </div>
 		<label>Ваше мнение:</label>
