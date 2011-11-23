@@ -59,6 +59,7 @@ class Laws extends CActiveRecord {
         return array(
             'owner' => array(self::BELONGS_TO, 'Users', 'user_id'),
             'rating' => array(self::STAT, 'Rating', 'law_id'),
+            'commentCount' => array(self::STAT, 'CommentRelation', 'model_id')
         );
     }
 
