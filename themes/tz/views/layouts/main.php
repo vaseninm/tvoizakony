@@ -61,7 +61,7 @@
                 <ul id="hl-menu">
                     <li><a href="<?= $this->createUrl('/site/page', array('view'=>'about')) ?>">О проекте</a></li>
                     <li><a href="http://twitter.com/tvoizakony">Новости проекта</a></li>
-                    <!--<li class="rss"><a href="#">RSS</a></li>-->
+                    <li><a href="http://tvoizakony.livejournal.com/">Блог в ЖЖ</a></li>
                 </ul>
                 <ul id="hr-menu" class="fr">
                     <li class="login">
@@ -70,6 +70,11 @@
                         <? } else { ?>
                             <a href="<?= $this->createUrl('/user/profile') ?>">Ваш профиль</a> 
                             <a href="<?= $this->createUrl('/user/edit') ?>">(ред.)</a>
+                        <? } ?>
+                    </li>
+                    <li class="login">
+                        <? if (!Yii::app()->user->isGuest) { ?>
+                            <a href="<?= $this->createUrl('/user/changepassword') ?>">Изменить пароль</a>
                         <? } ?>
                     </li>
                     <li class="reg">

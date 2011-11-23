@@ -36,13 +36,13 @@ class UserController extends Controller {
 
     public function beforeAction($view) {
         parent::beforeAction($view);
-        Yii::app()->breadCrumbs->setCrumb('Пользователь', array('/users/profile'));
+        Yii::app()->breadCrumbs->setCrumb('Пользователь', array('/user/profile'));
         return true;
     }
 
     public function actionChangePassword() {
         $model = new PasswordForm;
-        
+
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'changepassword-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
@@ -57,9 +57,9 @@ class UserController extends Controller {
                     EUserFlash::setSuccessMessage('Пароль успешно изменен');
                     $this->redirect(array('/user/profile'));
                 }
-            }      
+            }
         }
-        
+
         $this->render('changepassword', array('model' => $model));
     }
 
@@ -91,6 +91,7 @@ class UserController extends Controller {
         $user = Users::model()->findByPk(Yii::app()->user->id);
         $model->firstname = $user->profile->firstname;
         $model->lastname = $user->profile->lastname;
+        $model->sendnewslatter = $user->profile->sendnewslatter;
         $this->render('edit', array(
             'model' => $model,
         ));
@@ -156,14 +157,11 @@ class UserController extends Controller {
                 $profile->user_id = $user->id;
                 if (!$profile->save())
                     throw new CHttpException(500, "Unknown Error");
-                $message = new YiiMailMessage;
-                $message->subject = 'Регистрация на TvoiZakony.ru';
-                $message->view = 'registration';
-                $message->data['username'] = $user->username;
-                $message->setBody();
-                $message->addTo($model->email);
-                $message->from = Yii::app()->params['adminEmail'];
-                Yii::app()->mail->send($message);
+
+                HMail::send('Регистрация на TvoiZakony.ru', 'registration', $model->email, array(
+                    'user' => Users::model()->findByPk($user->id),
+                ));
+
                 EUserFlash::setSuccessMessage('Вы успешно зарегистрировались.');
                 $this->redirect(array('user/login'));
             }
@@ -186,14 +184,10 @@ class UserController extends Controller {
                 $user = Users::model()->find('email = :email', array(':email' => $model->email));
                 $user->password = $user->getPasswordHash($password);
                 if ($user->save()) {
-                    $message = new YiiMailMessage;
-                    $message->subject = 'Восстановление пароля на TvoiZakony.ru';
-                    $message->view = 'retrieve';
-                    $message->data['password'] = $password;
-                    $message->setBody();
-                    $message->addTo($model->email);
-                    $message->from = Yii::app()->params['adminEmail'];
-                    Yii::app()->mail->send($message);
+                    HMail::send('Восстановление пароля на TvoiZakony.ru', 'retrieve', $model->email, array(
+                        'user' => $user,
+                        'password' => $password,
+                    ));
                     EUserFlash::setSuccessMessage('Новый пароль отправлен на Ваш e-mail.');
                     $this->redirect(array('/user/login'));
                 }

@@ -21,21 +21,27 @@
 
     <fieldset>
         <p>
-            <label for="email">Имя*:</label>
+            <label for="firstname">Имя*:</label>
             <?php echo $form->textField($model, 'firstname', array('class' => 'rl-text')); ?>
             <?php echo $form->error($model, 'firstname'); ?>
         </p>
 
         <p>
-            <label for="email">Фамилия*:</label>
+            <label for="lastname">Фамилия*:</label>
             <?php echo $form->textField($model, 'lastname', array('class' => 'rl-text')); ?>
             <?php echo $form->error($model, 'lastname'); ?>
         </p>
 
         <p>
-            <label for="email">Фото:</label>
+            <label for="avatar">Фото:</label>
             <?php echo $form->fileField($model, 'avatar', array('class' => 'rl-text')); ?>
             <?php echo $form->error($model, 'avatar'); ?>
+        </p>
+        
+        <p>
+            <label for="sendnewslatter">Посылать уведомления?</label>
+            <?php echo $form->checkBox($model, 'sendnewslatter'); ?>
+            <?php echo $form->error($model, 'sendnewslatter'); ?>
         </p>
 
 

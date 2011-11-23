@@ -10,6 +10,7 @@ class EditForm extends CFormModel
         public $firstname;
         public $lastname;
         public $avatar;
+        public $sendnewslatter;
 
 
 	/**
@@ -22,6 +23,7 @@ class EditForm extends CFormModel
 		return array(
                     array('firstname, lastname', 'required'),
                     array('firstname, lastname', 'safe'),
+                    array('sendnewslatter', 'boolean'),
                     array('avatar', 'file', 'types' => 'png, gif, jpg', 'allowEmpty' => true),
 		);
 	}

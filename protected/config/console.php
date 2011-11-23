@@ -12,7 +12,7 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=tz',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => 'cjfctg',
+			'password' => 'QWASZX',
 			'charset' => 'utf8',
 		),
 		

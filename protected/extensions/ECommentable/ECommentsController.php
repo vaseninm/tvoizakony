@@ -52,6 +52,15 @@ class ECommentsController extends CExtController {
                 'owner' => $model,
                     ), true
             );
+            HMail::send('К вашему закону TvoiZakony.ru добавлен комментарий', 'addcommenttolaws', $comment->owner->email, array(
+                'model' => $model,
+                'comment' => $comment,
+            ));
+            HMail::send('К вашему комментарию на TvoiZakony.ru добавлен ответ', 'addcommenttocomment', $comment->owner->email, array(
+                'model' => $model,
+                'comment' => $comment,
+                'parent' => Comment::model()->findByPk($comment->parent_id),
+            ));
         }
 
         echo json_encode(array(
@@ -72,6 +81,9 @@ class ECommentsController extends CExtController {
                 'comment' => $comment,
                 'owner' => $model,
                     ), true);
+            HMail::send('Ваш комментари на TvoiZakony.ru удален', 'deletedcomment', $model->owner->email, array(
+                'model' => $model,
+            ));
         }
         echo json_encode(array(
             'error' => !$html,
