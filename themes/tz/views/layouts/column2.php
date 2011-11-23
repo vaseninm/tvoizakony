@@ -28,6 +28,7 @@
             <li>Из них на главной: <?= Laws::model()->cache(30)->count('cache_rate >= :rate AND approve=1', array(':rate'=>Laws::MAIN_PAGE_RATE)); ?></li>
             <li>На модерации: <?= Laws::model()->cache(30)->count('approve=0'); ?></li>
             <li>Пользователей: <?= Users::model()->cache(30)->count(); ?></li>
+            <li>Комментариев: <?= Comments::model()->cache(30)->count(); ?></li>
         </ul>
     </div>
 </aside><!-- #sideRight -->
