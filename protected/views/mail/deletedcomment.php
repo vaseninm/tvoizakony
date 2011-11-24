@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Шаблон письма</title>
+        <title>Ваш комментарий удален модератором</title>
     </head>
 
     <body style="padding:0;margin:0;">
@@ -22,18 +22,19 @@
                                                 </tr>
                                                 <tr>
                                                     <td style="padding-left:20px;padding-right:20px;">
-                                                        <h2 style="font-family:Arial, Helvetica, sans-serif;font-size:24px;font-weight:lighter;">Здравствуйте</h2>
+                                                        <h2 style="font-family:Arial, Helvetica, sans-serif;font-size:24px;font-weight:lighter;">Здравствуйте, <?= $this->data['comment']->owner->firstname ?> <?= $this->data['comment']->owner->lastname ?></h2>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="padding-left:20px;padding-right:20px;font-family:Arial, Helvetica, sans-serif;font-size:12px;">
-                                                        <p>Пользователь <a href="#" style="color:#135687;">Азат Мужипов</a> добавил ответ к вашему комментарию на проекте "Твои Законы".</p>
-                                                        <p style="font-size:14px;font-style:oblique; color:#5c5c5c;padding-top:10px;padding-bottom:10px;">Хотя пожалуй ограничить импорт не получится, столько кошельков похудеет сразу и таможня, и поступления в бюджет за счет таможенных пошлин тоже. Хотя куда эти деньги потом уходят, не знает никто. Вернее знают, но молчат.</p>
-                                                        <p>Чтобы ответить на комметарий перейдите по <a href="#" style="color:#135687;">этой ссылке</a>.</p>
+                                                        <p>Ваш комментарий к законопрокту <a href="<?= Yii:app()->urlManager->createUrl('laws/view', array('id'=>$this->data['model']->id)); ?>"><?= $this->data['model']->title ?></a> был удален модератором.</p>
+                                                        <p style="font-size:14px;font-style:oblique; color:#5c5c5c;padding-top:10px;padding-bottom:10px;"><?= $this->data['comment']->text ?></p>
                                                         <p>Вы получили это электронное сообщение, так как являетесь зарегестрированным пользователем проекта "Твои Законы".</p>
-                                                        <p><strong>С уважением,</strong><br>
+                                                        <p>
+															<strong>С уважением,</strong><br>
                                                             <strong>команда "Твои Законы"</strong><br>
-                                                            <a href="http://www.tvoizakony.ru" style="color:#135687;">http://www.tvoizakony.ru</a></p>
+                                                            <a href="http://www.tvoizakony.ru" style="color:#135687;">http://www.tvoizakony.ru</a>
+														</p>
                                                     </td>
                                                 </tr>
                                             </tbody>

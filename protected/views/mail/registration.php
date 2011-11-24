@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Шаблон письма</title>
+        <title>Регистрация на проекте "Твои Законы"</title>
     </head>
 
     <body style="padding:0;margin:0;">
@@ -22,15 +22,17 @@
                                                 </tr>
                                                 <tr>
                                                     <td style="padding-left:20px;padding-right:20px;">
-                                                        <h2 style="font-family:Arial, Helvetica, sans-serif;font-size:24px;font-weight:lighter;">Здравствуйте</h2>
+                                                        <h2 style="font-family:Arial, Helvetica, sans-serif;font-size:24px;font-weight:lighter;">Здравствуйте, <?= $this->data['user']->firstname ?> <?= $this->data['user']->lastname ?></h2>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="padding-left:20px;padding-right:20px;font-family:Arial, Helvetica, sans-serif;font-size:12px;">
-                                                        <p>Пользователь <a href="#" style="color:#135687;">Азат Мужипов</a> добавил ответ к вашему комментарию на проекте "Твои Законы".</p>
-                                                        <p style="font-size:14px;font-style:oblique; color:#5c5c5c;padding-top:10px;padding-bottom:10px;">Хотя пожалуй ограничить импорт не получится, столько кошельков похудеет сразу и таможня, и поступления в бюджет за счет таможенных пошлин тоже. Хотя куда эти деньги потом уходят, не знает никто. Вернее знают, но молчат.</p>
-                                                        <p>Чтобы ответить на комметарий перейдите по <a href="#" style="color:#135687;">этой ссылке</a>.</p>
-                                                        <p>Вы получили это электронное сообщение, так как являетесь зарегестрированным пользователем проекта "Твои Законы".</p>
+                                                        <p>Спасибо за регистрацию на нашем проекте <a href="http://www.tvoizakony.ru" style="color:#135687;">Твои Законы</a>.</p>
+														<ul style="font-size:14px; color:#5c5c5c;padding-top:10px;padding-bottom:10px;">
+															<li style="list-style:none;">Логин: <?= $this->data['user']->username ?></li>
+															<li style="list-style:none;">Пароль: тот который вы указали</li>
+														</ul>
+														<p>Если вы не регистрировались, то просто проигнорируйте это письмо.</p>
                                                         <p><strong>С уважением,</strong><br>
                                                             <strong>команда "Твои Законы"</strong><br>
                                                             <a href="http://www.tvoizakony.ru" style="color:#135687;">http://www.tvoizakony.ru</a></p>
