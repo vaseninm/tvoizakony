@@ -22,14 +22,14 @@
                                                 </tr>
                                                 <tr>
                                                     <td style="padding-left:20px;padding-right:20px;">
-                                                        <h2 style="font-family:Arial, Helvetica, sans-serif;font-size:24px;font-weight:lighter;">Здравствуйте, <?= $this->data['model']->owner->firstname ?> <?= $this->data['model']->owner->lastname ?></h2>
+                                                        <h2 style="font-family:Arial, Helvetica, sans-serif;font-size:24px;font-weight:lighter;">Здравствуйте, <?= $mail->date['model']->owner->profile->firstname ?> <?= $mail->date['model']->owner->profile->lastname ?></h2>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="padding-left:20px;padding-right:20px;font-family:Arial, Helvetica, sans-serif;font-size:12px;">
-                                                        <p>Пользователь <a href="<?= Yii:app()->urlManager->createUrl('user/profile', array('username'=>$this->data['comment']->owner->username)); ?>" style="color:#135687;"><?= $this->data['comment']->owner->firstname ?> <?= $this->data['comment']->owner->lastname ?></a> добавил комментарий к вашему законопроекту на проекте "Твои Законы".</p>
-                                                        <p style="font-size:14px;font-style:oblique; color:#5c5c5c;padding-top:10px;padding-bottom:10px;"><?= $this->data['comment']->text ?></p>
-                                                        <p>Чтобы ответить на комметарий перейдите по <a href="<?= Yii:app()->urlManager->createUrl('laws/view', array('id'=>$this->data['model']->id)); ?>#comment-<?=$this->data['comment']->id ?>" style="color:#135687;">этой ссылке</a>.</p>
+                                                        <p>Пользователь <a href="<?= Yii::app()->urlManager->createUrl('user/profile', array('username'=>$mail->date['comment']->owner->username)); ?>" style="color:#135687;"><?= $mail->date['comment']->owner->profile->firstname ?> <?= $mail->date['comment']->owner->profile->lastname ?></a> добавил комментарий к вашему законопроекту на проекте "Твои Законы".</p>
+                                                        <p style="font-size:14px;font-style:oblique; color:#5c5c5c;padding-top:10px;padding-bottom:10px;"><?= $mail->date['comment']->text ?></p>
+                                                        <p>Чтобы ответить на комметарий перейдите по <a href="<?= Yii::app()->urlManager->createUrl('laws/view', array('id'=>$mail->date['model']->id)); ?>#comment-<?=$mail->date['comment']->id ?>" style="color:#135687;">этой ссылке</a>.</p>
                                                         <p>Вы получили это электронное сообщение, так как являетесь зарегестрированным пользователем проекта "Твои Законы".</p>
                                                         <p>
 														    <strong>С уважением,</strong><br>

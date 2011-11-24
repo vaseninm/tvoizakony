@@ -8,7 +8,7 @@
  * @property string $firstname
  * @property string $lastname
  * @property integer $user_id
- * @property string $sendNewsletter
+ * @property string $sendnewsletter
  */
 class Profiles extends CActiveRecord {
 

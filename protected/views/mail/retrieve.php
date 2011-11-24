@@ -22,14 +22,14 @@
                                                 </tr>
                                                 <tr>
                                                     <td style="padding-left:20px;padding-right:20px;">
-                                                        <h2 style="font-family:Arial, Helvetica, sans-serif;font-size:24px;font-weight:lighter;">Здравствуйте, <?= $this->data['user']->firstname ?> <?= $this->data['user']->lastname ?></h2>
+                                                        <h2 style="font-family:Arial, Helvetica, sans-serif;font-size:24px;font-weight:lighter;">Здравствуйте, <?= $mail->date['user']->profile->firstname ?> <?= $mail->date['user']->profile->lastname ?></h2>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="padding-left:20px;padding-right:20px;font-family:Arial, Helvetica, sans-serif;font-size:12px;">
                                                         <p>Вы запросили восстановление пароля на проекте <a href="http://www.tvoizakony.ru" style="color:#135687;">Твои Законы</a>.</p>
                                                         <ul style="font-size:14px; color:#5c5c5c;padding-top:10px;padding-bottom:10px;">
-															<li style="list-style:none;">Ваш пароль: <?= $this->data['password'] ?></li>
+															<li style="list-style:none;">Ваш пароль: <?= $mail->date['password'] ?></li>
 														</ul>
                                                         <p>Вы получили это электронное сообщение, так как являетесь зарегестрированным пользователем проекта "Твои Законы".</p>
                                                         <p>

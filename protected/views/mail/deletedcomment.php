@@ -22,13 +22,13 @@
                                                 </tr>
                                                 <tr>
                                                     <td style="padding-left:20px;padding-right:20px;">
-                                                        <h2 style="font-family:Arial, Helvetica, sans-serif;font-size:24px;font-weight:lighter;">Здравствуйте, <?= $this->data['comment']->owner->firstname ?> <?= $this->data['comment']->owner->lastname ?></h2>
+                                                        <h2 style="font-family:Arial, Helvetica, sans-serif;font-size:24px;font-weight:lighter;">Здравствуйте, <?= $mail->date['comment']->owner->profile->firstname ?> <?= $mail->date['comment']->owner->profile->lastname ?></h2>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="padding-left:20px;padding-right:20px;font-family:Arial, Helvetica, sans-serif;font-size:12px;">
-                                                        <p>Ваш комментарий к законопрокту <a href="<?= Yii:app()->urlManager->createUrl('laws/view', array('id'=>$this->data['model']->id)); ?>"><?= $this->data['model']->title ?></a> был удален модератором.</p>
-                                                        <p style="font-size:14px;font-style:oblique; color:#5c5c5c;padding-top:10px;padding-bottom:10px;"><?= $this->data['comment']->text ?></p>
+                                                        <p>Ваш комментарий к законопрокту <a href="<?= Yii::app()->urlManager->createUrl('laws/view', array('id'=>$mail->date['model']->id)); ?>"><?= $mail->date['model']->title ?></a> был удален модератором.</p>
+                                                        <p style="font-size:14px;font-style:oblique; color:#5c5c5c;padding-top:10px;padding-bottom:10px;"><?= $mail->date['comment']->text ?></p>
                                                         <p>Вы получили это электронное сообщение, так как являетесь зарегестрированным пользователем проекта "Твои Законы".</p>
                                                         <p>
 															<strong>С уважением,</strong><br>
