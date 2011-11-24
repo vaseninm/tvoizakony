@@ -56,10 +56,11 @@ class ECommentsController extends CExtController {
                 'model' => $model,
                 'comment' => $comment,
             ));
-            HMail::send('К вашему комментарию на TvoiZakony.ru добавлен ответ', 'addcommenttocomment', $comment->owner->email, array(
+            $parentmodel = Comment::model()->findByPk($comment->parent_id);
+            HMail::send('К вашему комментарию на TvoiZakony.ru добавлен ответ', 'addcommenttocomment', $parentmodel->owner->email, array(
                 'model' => $model,
                 'comment' => $comment,
-                'parent' => Comment::model()->findByPk($comment->parent_id),
+                'parent' => $parentmodel,
             ));
         }
 
