@@ -16,7 +16,7 @@ $level = ($comment->level > 6) ? 6 : $comment->level;
             <a href="<?= Yii::app()->urlManager->createUrl('user/profile', array('username' => CHtml::encode($comment->owner->username))) ?>"><?= CHtml::encode($comment->owner->profile->lastname) ?> <?= CHtml::encode($comment->owner->profile->firstname) ?></a>
             <span class="date"><?= date('d.m.Y @ H:i', $comment->createtime); ?></span>
             <div class="comment-text">
-                <p><?= stripslashes($comment->text) ?></p>
+                <p><?= stripslashes(nl2br($comment->text)) ?></p>
             </div>
         </div>
 

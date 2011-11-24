@@ -169,7 +169,7 @@ class LawsController extends Controller {
         $dataProvider = new CActiveDataProvider('Laws', array(
                     'criteria' => $criteria,
                     'sort' => array(
-                        'defaultOrder' => 'createtime DESC',
+                        'defaultOrder' => array('createtime' => true),
                         'attributes' => array(
                             'createtime',
                             'cache_rate',
@@ -190,7 +190,7 @@ class LawsController extends Controller {
         $dataProvider = new CActiveDataProvider('Laws', array(
                     'criteria' => $criteria,
                     'sort' => array(
-                        'defaultOrder' => 'createtime DESC',
+                        'defaultOrder' => array('createtime' => true),
                         'attributes' => array(
                             'createtime',
                             'cache_rate',
