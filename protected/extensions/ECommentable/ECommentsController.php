@@ -82,8 +82,9 @@ class ECommentsController extends CExtController {
                 'comment' => $comment,
                 'owner' => $model,
                     ), true);
-            HMail::send('Ваш комментари на TvoiZakony.ru удален', 'deletedcomment', $model->owner->email, array(
+            HMail::send('Ваш комментари на TvoiZakony.ru удален', 'deletedcomment', $comment->owner->email, array(
                 'model' => $model,
+                'comment' => $comment,
             ));
         }
         echo json_encode(array(
