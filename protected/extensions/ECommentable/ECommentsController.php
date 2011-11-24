@@ -52,7 +52,7 @@ class ECommentsController extends CExtController {
                 'owner' => $model,
                     ), true
             );
-            HMail::send('К вашему закону TvoiZakony.ru добавлен комментарий', 'addcommenttolaws', $comment->owner->email, array(
+            HMail::send('К вашему закону на TvoiZakony.ru добавлен комментарий', 'addcommenttolaws', $comment->owner->email, array(
                 'model' => $model,
                 'comment' => $comment,
             ));

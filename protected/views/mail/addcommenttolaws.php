@@ -1,4 +1,3 @@
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
@@ -22,14 +21,14 @@
                                                 </tr>
                                                 <tr>
                                                     <td style="padding-left:20px;padding-right:20px;">
-                                                        <h2 style="font-family:Arial, Helvetica, sans-serif;font-size:24px;font-weight:lighter;">Здравствуйте, <?= $mail->date['model']->owner->profile->firstname ?> <?= $mail->date['model']->owner->profile->lastname ?></h2>
+                                                        <h2 style="font-family:Arial, Helvetica, sans-serif;font-size:24px;font-weight:lighter;">Здравствуйте, <?= $mail->data['model']->owner->profile->firstname ?> <?= $mail->data['model']->owner->profile->lastname ?></h2>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="padding-left:20px;padding-right:20px;font-family:Arial, Helvetica, sans-serif;font-size:12px;">
-                                                        <p>Пользователь <a href="<?= Yii::app()->urlManager->createUrl('user/profile', array('username'=>$mail->date['comment']->owner->username)); ?>" style="color:#135687;"><?= $mail->date['comment']->owner->profile->firstname ?> <?= $mail->date['comment']->owner->profile->lastname ?></a> добавил комментарий к вашему законопроекту на проекте "Твои Законы".</p>
-                                                        <p style="font-size:14px;font-style:oblique; color:#5c5c5c;padding-top:10px;padding-bottom:10px;"><?= $mail->date['comment']->text ?></p>
-                                                        <p>Чтобы ответить на комметарий перейдите по <a href="<?= Yii::app()->urlManager->createUrl('laws/view', array('id'=>$mail->date['model']->id)); ?>#comment-<?=$mail->date['comment']->id ?>" style="color:#135687;">этой ссылке</a>.</p>
+                                                        <p>Пользователь <a href="<?= Yii::app()->urlManager->createUrl('user/profile', array('username'=>$mail->data['comment']->owner->username)); ?>" style="color:#135687;"><?= $mail->data['comment']->owner->profile->firstname ?> <?= $mail->data['comment']->owner->profile->lastname ?></a> добавил комментарий к вашему законопроекту на проекте "Твои Законы".</p>
+                                                        <p style="font-size:14px;font-style:oblique; color:#5c5c5c;padding-top:10px;padding-bottom:10px;"><?= $mail->data['comment']->text ?></p>
+                                                        <p>Чтобы ответить на комметарий перейдите по <a href="<?= Yii::app()->urlManager->createUrl('laws/view', array('id'=>$mail->data['model']->id)); ?>#comment-<?=$mail->data['comment']->id ?>" style="color:#135687;">этой ссылке</a>.</p>
                                                         <p>Вы получили это электронное сообщение, так как являетесь зарегестрированным пользователем проекта "Твои Законы".</p>
                                                         <p>
 														    <strong>С уважением,</strong><br>

@@ -1,4 +1,3 @@
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
@@ -22,14 +21,14 @@
                                                 </tr>
                                                 <tr>
                                                     <td style="padding-left:20px;padding-right:20px;">
-                                                        <h2 style="font-family:Arial, Helvetica, sans-serif;font-size:24px;font-weight:lighter;">Здравствуйте, <?= $mail->date['user']->profile->firstname ?> <?= $mail->date['user']->profile->lastname ?></h2>
+                                                        <h2 style="font-family:Arial, Helvetica, sans-serif;font-size:24px;font-weight:lighter;">Здравствуйте, <?= $mail->data['user']->profile->firstname ?> <?= $mail->data['user']->profile->lastname ?></h2>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="padding-left:20px;padding-right:20px;font-family:Arial, Helvetica, sans-serif;font-size:12px;">
                                                         <p>Спасибо за регистрацию на нашем проекте <a href="http://www.tvoizakony.ru" style="color:#135687;">Твои Законы</a>.</p>
 														<ul style="font-size:14px; color:#5c5c5c;padding-top:10px;padding-bottom:10px;">
-															<li style="list-style:none;">Логин: <?= $mail->date['user']->username ?></li>
+															<li style="list-style:none;">Логин: <?= $mail->data['user']->username ?></li>
 															<li style="list-style:none;">Пароль: тот который вы указали</li>
 														</ul>
 														<p>Если вы не регистрировались, то просто проигнорируйте это письмо.</p>

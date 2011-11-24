@@ -1,4 +1,3 @@
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
@@ -22,13 +21,13 @@
                                                 </tr>
                                                 <tr>
                                                     <td style="padding-left:20px;padding-right:20px;">
-                                                        <h2 style="font-family:Arial, Helvetica, sans-serif;font-size:24px;font-weight:lighter;">Здравствуйте, <?= $mail->date['comment']->owner->profile->firstname ?> <?= $mail->date['comment']->owner->profile->lastname ?></h2>
+                                                        <h2 style="font-family:Arial, Helvetica, sans-serif;font-size:24px;font-weight:lighter;">Здравствуйте, <?= $mail->data['comment']->owner->profile->firstname ?> <?= $mail->data['comment']->owner->profile->lastname ?></h2>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="padding-left:20px;padding-right:20px;font-family:Arial, Helvetica, sans-serif;font-size:12px;">
-                                                        <p>Ваш комментарий к законопрокту <a href="<?= Yii::app()->urlManager->createUrl('laws/view', array('id'=>$mail->date['model']->id)); ?>"><?= $mail->date['model']->title ?></a> был удален модератором.</p>
-                                                        <p style="font-size:14px;font-style:oblique; color:#5c5c5c;padding-top:10px;padding-bottom:10px;"><?= $mail->date['comment']->text ?></p>
+                                                        <p>Ваш комментарий к законопрокту <a href="<?= Yii::app()->urlManager->createUrl('laws/view', array('id'=>$mail->data['model']->id)); ?>"><?= $mail->data['model']->title ?></a> был удален модератором.</p>
+                                                        <p style="font-size:14px;font-style:oblique; color:#5c5c5c;padding-top:10px;padding-bottom:10px;"><?= $mail->data['comment']->text ?></p>
                                                         <p>Вы получили это электронное сообщение, так как являетесь зарегестрированным пользователем проекта "Твои Законы".</p>
                                                         <p>
 															<strong>С уважением,</strong><br>
