@@ -16,13 +16,12 @@
         <div class="">
             <ul class="m-edit p-author">
                 <li>
-					предложил
-					<a href="<?= $this->createUrl('user/profile', array('username' => CHtml::encode($data->owner->username))) ?>">
-					<?= CHtml::encode($data->owner->profile->lastname) ?> <?= CHtml::encode($data->owner->profile->firstname) ?>
-					</a>
+                    Автор: 
+                    <a href="<?= $this->createUrl('user/profile', array('username' => CHtml::encode($data->owner->username))) ?>">
+                        <?= CHtml::encode($data->owner->profile->lastname) ?> <?= CHtml::encode($data->owner->profile->firstname) ?>
+                    </a>
                 </li>
-				<li>Опубликовано: <?= date('d.m.Y', $data->createtime); ?></li>
-                <li>Мнений: <a href="#">47</a></li>
+                <li>Добавлено: <a href="#"><?= date('d.m.Y', $data->createtime); ?></a></li>
                 <? if ($data->isEdited()) { ?>
                     <li class="edit"><a href="<?= $this->createUrl('/laws/update', array('id' => $data->id)) ?>">Редактировать</a></li>
                     <li class="delete"><a class="ajax-delete" href="<?= $this->createUrl('/laws/delete', array('id' => $data->id)) ?>">Удалить</a></li>
