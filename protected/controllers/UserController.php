@@ -160,7 +160,7 @@ class UserController extends Controller {
 
                 HMail::send('Регистрация на TvoiZakony.ru', 'registration', $model->email, array(
                     'user' => Users::model()->findByPk($user->id),
-                ));
+                ), true);
 
                 EUserFlash::setSuccessMessage('Вы успешно зарегистрировались.');
                 $this->redirect(array('user/login'));
@@ -187,7 +187,7 @@ class UserController extends Controller {
                     HMail::send('Восстановление пароля на TvoiZakony.ru', 'retrieve', $model->email, array(
                         'user' => $user,
                         'password' => $password,
-                    ));
+                    ), true);
                     EUserFlash::setSuccessMessage('Новый пароль отправлен на Ваш e-mail.');
                     $this->redirect(array('/user/login'));
                 }

@@ -26,7 +26,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td style="padding-left:20px;padding-right:20px;font-family:Arial, Helvetica, sans-serif;font-size:12px;">
-                                                        <p>Ваш комментарий к законопрокту <a href="<?= Yii::app()->urlManager->createUrl('laws/view', array('id'=>$mail->data['model']->id)); ?>"><?= $mail->data['model']->title ?></a> был удален модератором.</p>
+                                                        <p>Ваш комментарий к законопрокту <a href="<?= Yii::app()->createAbsoluteUrl('laws/view', array('id'=>$mail->data['model']->id)); ?>"><?= $mail->data['model']->title ?></a> был удален модератором.</p>
                                                         <p style="font-size:14px;font-style:oblique; color:#5c5c5c;padding-top:10px;padding-bottom:10px;"><?= $mail->data['comment']->text ?></p>
                                                         <p>Вы получили это электронное сообщение, так как являетесь зарегестрированным пользователем проекта "Твои Законы".</p>
                                                         <p>
