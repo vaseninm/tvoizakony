@@ -91,7 +91,7 @@ class UserController extends Controller {
         $user = Users::model()->findByPk(Yii::app()->user->id);
         $model->firstname = $user->profile->firstname;
         $model->lastname = $user->profile->lastname;
-        $model->sendnewslatter = $user->profile->sendnewslatter;
+        $model->sendnewsletter = $user->profile->sendnewsletter;
         $this->render('edit', array(
             'model' => $model,
         ));
