@@ -40,8 +40,8 @@
         
         <p>
             <label for="sendnewslatter">Посылать уведомления?</label>
-            <?php echo $form->checkBox($model, 'sendnewslatter'); ?>
-            <?php echo $form->error($model, 'sendnewslatter'); ?>
+            <?php echo $form->checkBox($model, 'sendnewsletter'); ?>
+            <?php echo $form->error($model, 'sendnewsletter'); ?>
         </p>
 
 

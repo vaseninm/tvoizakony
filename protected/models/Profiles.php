@@ -39,8 +39,8 @@ class Profiles extends CActiveRecord {
             array('user_id', 'required'),
             array('user_id', 'numerical', 'integerOnly' => true),
             array('firstname, lastname', 'length', 'max' => 255),
-            array('sendnewslatter', 'boolean'),
-            array('sendnewslatter', 'default', 'value'=>1),
+            array('sendnewsletter', 'boolean'),
+            array('sendnewsletter', 'default', 'value'=>1),
             array('avatar', 'file', 'types' => 'png, gif, jpg', 'allowEmpty' => true),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
