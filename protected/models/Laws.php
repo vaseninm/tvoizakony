@@ -11,9 +11,10 @@
  * @property integer $createtime
  * @property integer $approve
  * @property integer $cache_rate
+ * @property integer $cache_vote_count
  */
 class Laws extends CActiveRecord {
-    const MAIN_PAGE_RATE = 10;
+    const MAIN_PAGE_RATE = 5;
 
     protected $ratingModel = NULL;
 
@@ -58,6 +59,7 @@ class Laws extends CActiveRecord {
         return array(
             'owner' => array(self::BELONGS_TO, 'Users', 'user_id'),
             'rating' => array(self::STAT, 'Rating', 'law_id'),
+            'commentCount' => array(self::STAT, 'CommentRelation', 'model_id')
         );
     }
 

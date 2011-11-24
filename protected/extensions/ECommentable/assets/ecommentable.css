@@ -1,8 +1,7 @@
 /* COMMENTS: =comments
 ------------------------------------------------------------*/
 #comments {
-	margin-top: 30px;
-	padding: 25px 0 0 0;
+	margin: 30px 20px 0;
 }
 #comments h3 {
 	color: #5d616e;
@@ -59,11 +58,13 @@
 #comments .admin {
 	border: none;
 }
-
+.add-comment {
+	margin-left: 20px;
+}
 /* RESPOND =respond
 -----------------------------------------------------------------------------*/
 #respond {
-	margin: 10px 0 0 24px;
+
 }
 #respond h3 {
 	color: #5d616e;

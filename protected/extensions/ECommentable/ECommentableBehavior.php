@@ -7,7 +7,7 @@
  */
 class ECommentableBehavior extends CActiveRecordBehavior {
 
-    public $allowedTags = array('a', 'img', 'blockquote', 'b', 'i', 's');
+    public $allowedTags = array('a', 'blockquote', 'b', 'i', 's');
     
     public function add($text, $parent = 0) {
         if ($parent > 0) {
