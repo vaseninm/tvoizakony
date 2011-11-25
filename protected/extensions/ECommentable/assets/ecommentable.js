@@ -23,9 +23,10 @@ $(document).ready(function() {
             $('.ajax-empty-comment').slideDown('slow').delay(3000).slideUp('slow');
             return false;
         }
+        $(this).find('input[type=submit]').attr('disabled', 'disabled');
         var url = $(this).attr('action');
         var parent = $(this).find('input[name=parent]').attr('value');
-        divform = $(this).parent('.ajax-form-after');
+        divform = $(this).parent('.ajax-form-after')
         $.post(url, {
             'form': $(this).serialize()
         }, function (json) {
@@ -52,6 +53,7 @@ $(document).ready(function() {
                     $('.ajax-has-comment').show();
                     $('.ajax-no-comment').hide();
                 }
+                prevdiv.find('input[type=submit]').removeAttr('disabled');
             }
         }, 'json');
         return false;
